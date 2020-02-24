@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rvYTList"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_margin="5dp"
+    android:elevation="5dp"
+    android:background="@drawable/ripple_recyclerview_list">
+
+    <TextView
+        android:id="@+id/tvUploadDate"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:text="2020年02月09日"
+        android:textSize="17dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="wrap" />
+
+    <LinearLayout
+        android:id="@+id/thumbnailContainer"
+        android:layout_width="170dp"
+        android:layout_height="95.6dp"
+        android:background="#999"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvUploadDate"
+        app:layout_constraintTop_toBottomOf="@+id/tvUploadDate">
+
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/mr_youtube" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="あか"
+        android:textAlignment="textStart"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textSize="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvUploadDate"
+        app:layout_constraintTop_toTopOf="@+id/tvUploadDate"
+        app:layout_constraintWidth_max="wrap" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:ellipsize="end"
+        android:maxLines="6"
+        android:text="初投稿になります（*/ω＼*）今回使用した爆竹は稲徳煙火製造所で生産された日本製の爆竹です( •̀ᴗ•́ )و\n高評価＆チャンネル登録よろしくおねがいします(๑•̀ㅂ•́)و✧"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/thumbnailContainer"
+        app:layout_constraintTop_toBottomOf="@+id/tvUploadDate" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MovieSearcher</string>
+    <string name="hint_search_movie_name">動画名を検索</string>
+    <string name="text_btn_youtube">YouTube</string>
+    <string name="text_btn_niconico">ニコニコ動画</string>
+
+    <string name="string_key_keyword">keyword</string>
+    <string name="string_key_platform">platform</string>
+
+</resources>
