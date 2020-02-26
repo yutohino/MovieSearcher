@@ -1,5 +1,6 @@
 package com.example.moviesearcher;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import com.example.moviesearcher.models.NiconicoDataModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
 
 public class NiconicoRecyclerViewAdapter extends RecyclerView.Adapter<NiconicoRecyclerViewAdapter.ViewHolder> {
 

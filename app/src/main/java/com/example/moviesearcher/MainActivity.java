@@ -1,11 +1,13 @@
 package com.example.moviesearcher;
 
+
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.moviesearcher.fragment.FormSearchFragment;
+
 
 public class MainActivity extends AppCompatActivity {
 

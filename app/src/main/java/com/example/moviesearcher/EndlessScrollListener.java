@@ -1,8 +1,10 @@
 package com.example.moviesearcher;
 
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 public abstract class EndlessScrollListener extends RecyclerView.OnScrollListener {
     private int visibleItemCount, totalItemCount, firstVisibleItem;

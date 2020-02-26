@@ -1,5 +1,6 @@
 package com.example.moviesearcher;
 
+
 public class NiconicoAPI {
     public static final String BASE_URL = "https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search?q=";
     public final String TARGETS = "&targets=title,description,tags";
