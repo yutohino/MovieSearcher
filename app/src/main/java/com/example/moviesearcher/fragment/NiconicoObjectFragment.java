@@ -31,6 +31,7 @@ import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
+
 public class NiconicoObjectFragment extends Fragment {
 
     private RecyclerView recyclerView;
@@ -40,8 +41,6 @@ public class NiconicoObjectFragment extends Fragment {
     private int positionIndex;
     private int positionOffset;
     private String keyWord;
-    private String nextPageToken = "";
-    private Boolean isInitialSearch = true;
 
     public static NiconicoObjectFragment newInstance() {
         NiconicoObjectFragment fragment = new NiconicoObjectFragment();
@@ -81,7 +80,6 @@ public class NiconicoObjectFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        isInitialSearch = true;
         keepScrollPosition();
     }
 
@@ -92,17 +90,12 @@ public class NiconicoObjectFragment extends Fragment {
     }
 
     private void initList(ArrayList<NiconicoDataModel> listData) {
-        if (isInitialSearch) {
-            recyclerView.setHasFixedSize(true);
-            rvAdapter = new NiconicoRecyclerViewAdapter(getContext(), listData);
-            recyclerView.setAdapter(rvAdapter);
-            mLinearLayoutManager = new LinearLayoutManager(getContext());
-            recyclerView.setLayoutManager(mLinearLayoutManager);
-            rvAdapter.notifyDataSetChanged();
-            isInitialSearch = false;
-        } else {
-            rvAdapter.notifyDataSetChanged();
-        }
+        recyclerView.setHasFixedSize(true);
+        rvAdapter = new NiconicoRecyclerViewAdapter(getContext(), listData);
+        recyclerView.setAdapter(rvAdapter);
+        mLinearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(mLinearLayoutManager);
+        rvAdapter.notifyDataSetChanged();
     }
 
     private class RequestNiconicoAPI extends AsyncTask<Void, String, String> {
@@ -152,11 +145,7 @@ public class NiconicoObjectFragment extends Fragment {
             if (result != null) {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
-                    if (isInitialSearch) {
-                        niconicoListData = parseNiconicoListFromResponse(jsonObject);
-                    } else {
-                        niconicoListData.addAll(parseNiconicoListFromResponse(jsonObject));
-                    }
+                    niconicoListData = parseNiconicoListFromResponse(jsonObject);
                     initList(niconicoListData);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -177,7 +166,7 @@ public class NiconicoObjectFragment extends Fragment {
                         String thumbnails = json.getString("thumbnailUrl");
                         String videoId = json.getString("contentId");
 
-                        // 「T」以降はいらないので。
+                        // 「T」以降はいらないので「****-**-**」までを使う。
                         StringBuilder sbUpdate = new StringBuilder(update.substring(0, 10));
                         sbUpdate.replace(4, 5, "年").replace(7, 8, "月").append("日");
 

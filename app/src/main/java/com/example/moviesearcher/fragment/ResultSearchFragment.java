@@ -23,9 +23,6 @@ import com.example.moviesearcher.application.GetResourceApplication;
 import com.google.android.material.tabs.TabLayout;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ResultSearchFragment extends Fragment {
     public static final String KEY_KEYWORD = GetResourceApplication.context.getString(R.string.string_key_keyword);
     private static final String KEY_PLATFORM = GetResourceApplication.context.getString(R.string.string_key_platform);

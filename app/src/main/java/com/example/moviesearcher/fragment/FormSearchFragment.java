@@ -17,9 +17,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.moviesearcher.R;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FormSearchFragment extends Fragment {
 
     public static FormSearchFragment newInstance() {

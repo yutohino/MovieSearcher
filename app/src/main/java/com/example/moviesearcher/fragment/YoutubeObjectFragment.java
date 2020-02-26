@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.moviesearcher.EndlessScrollListener;
 import com.example.moviesearcher.R;
+import com.example.moviesearcher.YoutubeAPI;
 import com.example.moviesearcher.YoutubeRecyclerViewAdapter;
 import com.example.moviesearcher.models.YoutubeDataModel;
 
@@ -31,30 +32,18 @@ import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import static com.example.moviesearcher.YoutubeAPI.API_KEY;
-import static com.example.moviesearcher.YoutubeAPI.BASE_URL;
-import static com.example.moviesearcher.YoutubeAPI.max;
-import static com.example.moviesearcher.YoutubeAPI.ord;
-import static com.example.moviesearcher.YoutubeAPI.part;
-import static com.example.moviesearcher.YoutubeAPI.query;
-import static com.example.moviesearcher.YoutubeAPI.search;
-import static com.example.moviesearcher.YoutubeAPI.token;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class YoutubeObjectFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    YoutubeRecyclerViewAdapter rvAdapter;
-    ArrayList<YoutubeDataModel> youtubeListData;
-    LinearLayoutManager mLinearLayoutManager;
-    int positionIndex;
-    int positionOffset;
-    String keyWord;
-    String nextPageToken = "";
-    Boolean isInitialSearch = true;
+    private RecyclerView recyclerView;
+    private YoutubeRecyclerViewAdapter rvAdapter;
+    private ArrayList<YoutubeDataModel> youtubeListData;
+    private LinearLayoutManager mLinearLayoutManager;
+    private int positionIndex;
+    private int positionOffset;
+    private String keyWord;
+    private String nextPageToken = "";
+    private Boolean isInitialSearch = true;
 
     public static YoutubeObjectFragment newInstance() {
         YoutubeObjectFragment fragment = new YoutubeObjectFragment();
@@ -68,8 +57,7 @@ public class YoutubeObjectFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_youtube_object, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_youtube_object, container, false);
     }
 
     @Override
@@ -137,8 +125,8 @@ public class YoutubeObjectFragment extends Fragment {
 
         @Override
         protected String doInBackground(Void... voids) {
-            keyWord = getArguments().getString(ResultSearchFragment.KEY_KEYWORD);
-            String urlStr = BASE_URL + search + API_KEY + max + ord + query + keyWord + part + token + nextPageToken;
+            YoutubeAPI api = new YoutubeAPI();
+            String urlStr = api.BASE_URL + api.search + api.API_KEY + api.max + api.ord + api.query + keyWord + api.part + api.token + nextPageToken;
             try {
                 URL url = new URL(urlStr);
                 HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
@@ -207,7 +195,7 @@ public class YoutubeObjectFragment extends Fragment {
                                     String thumbnails = jsonSnippet.getJSONObject("thumbnails").getJSONObject("medium").getString("url");
                                     String videoId = jsonId.getString("videoId");
 
-                                    // 「T」以降はいらないので。
+                                    // 「T」以降はいらないので「****-**-**」までを使う。
                                     StringBuilder sbPublishdAt = new StringBuilder(publishedAt.substring(0, 10));
                                     sbPublishdAt.replace(4, 5, "年").replace(7, 8, "月").append("日");
 
